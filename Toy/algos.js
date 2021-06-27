@@ -430,14 +430,3 @@ function sorting(idx1, idx2, arr) {
     [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
 }
 
-function getDirections(matrix, from, to) {
-    if (from < to) {
-        if (from + 1 === to && !matrix[from][to]) {
-            return false
-        }
-        if (getDirections(matrix, from, from + 1)) {
-
-        }
-    }
-    return true
-}
