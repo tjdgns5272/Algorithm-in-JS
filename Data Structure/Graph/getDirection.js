@@ -46,13 +46,38 @@ function getDirections (matrix, from, to) {
     }
     return getDirec(from,to)
 }
+function getDirections3 (matrix, from , to ) {
+    let flag = new Array(matrix.length).fill(false);
+
+    let queue = [from]
+    const enqueue = (el) => queue.push(el)
+    const dequeue = () => queue.shift()
+
+    flag[from] = true;
+
+    while(queue.length !== 0) {
+        const now = dequeue()
+
+        if(now === to) {
+            return true
+        }
+        for(let next = 0; next< matrix.length ; next++){
+            if(matrix[now][next] === 1 && !flag[next]) {
+                flag[next] = true
+                enqueue(next)
+            }
+        }
+    }
+    return false
+}
 const m = [
     [0, 1, 0, 1],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 1, 0]
 ];   // 0,3 :  (0,1) -> (1,2) -> (2,3)
-const result = getDirections(
+// 0,2 : (0,3) -> (3,2)
+const result = getDirections3(
     m,
     0,
     2
