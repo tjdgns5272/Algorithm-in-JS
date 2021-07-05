@@ -49,3 +49,24 @@ const isSubsetOf4 = function (base, sample) {
     }
     return result
 }
+const isSubsetOfRef = function (base, sample) {
+   
+    base.sort((a, b) => b-a);
+    sample.sort((a, b) => b-a);
+
+    const findItemInSortedArr = (item, arr, from) => {
+        for (let i = from; i < arr.length; i++) {
+            if (item === arr[i]) return i;
+            else if (item < arr[i]) return -1;
+        }
+        return -1;
+    };
+
+    let baseIdx = 0;
+    for (let i = 0; i < sample.length; i++) {
+        baseIdx = findItemInSortedArr(sample[i], base, baseIdx);
+        if (baseIdx === -1) return false;
+    }
+    return true;
+};
+console.log(isSubsetOfRef([1,2,5,4,3],[4,2]));

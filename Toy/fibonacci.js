@@ -1,5 +1,6 @@
 function fibonacci(n) {
-    /*let fib = Array(n+1).fill(0)
+    let fib = Array(n+1).fill(0)  // [0,1,1,0,0]
+    
     fib[1] = 1
     fib[2] = 1
 
@@ -9,8 +10,6 @@ function fibonacci(n) {
         fib[n] = fibonacci(n-2) + fibonacci(n-1)
         return fib[n]
     }
-    */
-
 }
 
 let fibonacci2 = function (n) {
@@ -22,7 +21,7 @@ let fibonacci2 = function (n) {
         memo[n] = aux(n - 1) + aux(n - 2);
         return memo[n];
     };
-    return aux(n);
+    return aux(n)
 }
 
 function fib(n) {

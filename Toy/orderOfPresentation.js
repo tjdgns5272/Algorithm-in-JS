@@ -1,4 +1,4 @@
-function orderOfPresentation (N, K) {
+function orderOfPresentation (N, K) {  // 5, [1, 3, 2, 4, 5]
     const factorial = (num) => {
         if(num <= 1) {
             return 1
@@ -9,10 +9,9 @@ function orderOfPresentation (N, K) {
     let tempArr = [...K].sort((a,b) => a - b)
 
     for (let i=0; i<K.length ; i++) {
-        const temp = tempArr.filter(n => n < K[i]).length
+        const temp = tempArr.filter((n) => n < K[i]).length
         if(temp !== 0) {
             answer += factorial(N-1-i)*temp
-            console.log(answer)
         }
         const curIdx = tempArr.indexOf(K[i])
         tempArr.splice(curIdx,1)
@@ -34,11 +33,10 @@ function orderOfPresentation2(N, K) {
         const temp = tempArr.filter(n => n < K[i]).length
         if (temp !== 0) {
             answer += factorial(N - 1 - i) * temp
-            console.log(answer)
-            console.log(answer)
+
         }
         const curIdx = tempArr.indexOf(K[i])
-        tempArr.splice(curIdx, 1)
+        tempArr.splice(curIdx, 1) // mutable
     }
     return answer
 }
