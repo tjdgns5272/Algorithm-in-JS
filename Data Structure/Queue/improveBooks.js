@@ -22,5 +22,34 @@ function improveBook(books, speeds) {
     console.log(answer)
 }
 
+
+
+function improveBook2(books, speeds) {
+
+    const leftDays = books.map((book,idx) => {  // 각 남은 발간 일 수 계산된 배열
+        return Math.ceil((100-book)/speeds[idx])
+    })
+
+    let result = []
+
+    while (leftDays.length > 0) {
+        console.log(result);
+        const curBook = leftDays[0]
+        const count = leftDays.findIndex(book => book > curBook)
+
+        if(count === -1) {
+            result.push(leftDays.length)
+            break;
+        } else {
+            result.push(count)
+            leftDays.splice(0,count)
+        }
+    }
+    return result
+}
 let books = [95, 90, 99, 99, 80, 99];
 let speeds = [1, 1, 1, 1, 1, 1];
+
+console.log(improveBook2(books,speeds));
+
+

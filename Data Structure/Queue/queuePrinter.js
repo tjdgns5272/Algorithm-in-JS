@@ -64,7 +64,7 @@ function queuePrinter3(bufferSize, capacities, documents) { // reference
     queue.unshift(currentDocument);
     queue.pop();
 
-    totalBufferVolume = totalBufferVolume + currentDocument;
+    totalBufferVolume += currentDocument; // 7
 
     count++;
     while (totalBufferVolume) {
@@ -117,4 +117,38 @@ function queuePrinter4(bufferSize, capacities, documents) {
     return sec
 }
 
-console.log(queuePrinter4(4, 10, [7, 4, 7, 4]))
+function queuePrinter5(bufferSize, capacities, documents) {
+    const buffer = new Array(bufferSize).fill(0) // 버퍼 크기만큼 빈 배열 만들어줌
+
+    let sec = 0;
+
+    while (documents.length > 0) { // 처리할 문서가 더이상 남지 않으면 반복문을 멈춘다!
+        //현재 용량은 어차피 빠질 문서 (buffer[0]) 제외하고 합을 구한다
+        console.log(sec, buffer, documents);
+        const curSize = buffer.reduce((a, b) => a + b) - buffer[0]
+        // 👇🏻👇🏻왜냐하면 이런 상황때문임👇🏻👇🏻
+        /* 4, 10, [7,4,7,4] 일때
+           [7,0,0,0] [4,7,4]
+           이거 다음 단계가 [0,0,0,4] [7,4] 가 되야하는데
+           curSize를 전체 합으로 구해줄 경우에는 7이 되고 7+4는 10을 초과하기때문에
+           buffer에 4가 아니라 0을 추가해주게됨
+            [0,0,0,0] [4,7,4] 이 경우가 쓸데 없이 추가됨
+        */
+        const curDoc = documents.shift()  // 현재 처리할 문서
+        if (curDoc + curSize <= capacities) { // 용량 OK
+            buffer.push(curDoc)  // 처리할 문서를 넣어준다.
+        } else {                         // 용량 초과
+            documents.unshift(curDoc)  // 뽑았던 문서를 다시 제자리로 돌려놓음 (documents 맨앞에 넣어줌)
+            buffer.push(0)             // 그대신 0을 buffer에 넣어준다.
+        }
+        buffer.shift()   // 어찌됬건 1초에 한칸씩은 이동해야되니깐 buffer 맨 앞을 뽑아줌
+        sec++
+    }
+    return sec + bufferSize
+    /* ex) 4,10,[7,4,7,4]
+       마지막 스텝은 [7,0,0,0] [4]
+                 [0,0,0,4] []  이렇게 되니깐, 반복문 종료하고
+    */
+}
+
+console.log(queuePrinter5(4, 10, [7, 4, 7, 4]))

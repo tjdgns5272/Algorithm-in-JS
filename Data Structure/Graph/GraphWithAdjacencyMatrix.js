@@ -7,7 +7,6 @@ class GraphWithAdjacencyMatrix {
     constructor() {
         this.matrix = [];
     }
-
     addVertex() {
         const currentLength = this.matrix.length;
         for (let i = 0; i < currentLength; i++) {

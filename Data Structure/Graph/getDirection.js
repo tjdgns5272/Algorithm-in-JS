@@ -23,7 +23,7 @@ function getDirections2(matrix, from, to) {
 // 첫번째 코드는 다이렉트 최단경로로 이어져 있을때만 고려해서 돌아가는 케이스는 통과 안됨
 
 //TODO: 돌아가더라도 최종 목적지에 도착하는 경로 찾기!
-function getDirections (matrix, from, to) {
+function getDirections (matrix, from, to) {  // DFS 0,2
 
     if(matrix[from][to] === 1) return true   // 직접적으로 이어져있는 경로가 있으면 바로 true 리턴
 
@@ -33,13 +33,12 @@ function getDirections (matrix, from, to) {
         let result = false
 
         for(let i=0; i<matrix.length ; i++){
-            if(from === i) continue         // 자기자신은 제외
-            if(matrix[from][to] === 1) {    // 최종목적지에 도달했으면 result를 true로 변경하고 break
-                result = true; break;
+            if(matrix[from][to] === 1) {    // 최종목적지에 도달했으면 true 리턴
+                return true
             }
-            if(matrix[from][i] === 1 && flag[i] === false) { //
+            if(matrix[from][i] && !flag[i]) { // 방문한적이 없고, 길이 있으
                 flag[i] = true
-                result =  getDirec(i,to)
+                result =  getDirec(i,to)    // recursive case
             }
         }
         return result
@@ -49,14 +48,14 @@ function getDirections (matrix, from, to) {
 function getDirections3 (matrix, from , to ) {
     let flag = new Array(matrix.length).fill(false);
 
-    let queue = [from]
+    let queue = [from]   // [0]
     const enqueue = (el) => queue.push(el)
     const dequeue = () => queue.shift()
 
     flag[from] = true;
-
-    while(queue.length !== 0) {
-        const now = dequeue()
+    // [t,f,f,f]
+    while(queue.length > 0) {
+        const now = dequeue()  // [2]
 
         if(now === to) {
             return true
@@ -67,6 +66,8 @@ function getDirections3 (matrix, from , to ) {
                 enqueue(next)
             }
         }
+        //flag = [t,t,t,t]
+        // queue = [2]
     }
     return false
 }
@@ -77,11 +78,11 @@ const m = [
     [0, 0, 1, 0]
 ];   // 0,3 :  (0,1) -> (1,2) -> (2,3)
 // 0,2 : (0,3) -> (3,2)
-const result = getDirections3(
+const result = getDirections(
     m,
     0,
     2
 );
-
-
+console.log(m);
 console.log(result); // tru
+
