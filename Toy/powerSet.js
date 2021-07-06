@@ -42,7 +42,14 @@ console.log(powerSet('abcd'));
 const getCombinations = function (str, selectNumber) {
     const results = [];
 
-    const arr = str.split('')
+    const arr = str.split('').sort()
+    arr.forEach((el,idx,origin) => {
+        const temp = [...origin]
+        temp.splice(idx,1)
+        if(temp.includes(el)) {
+            arr.splice(idx,1)
+        }
+    })
     if (selectNumber === 1) return arr.map((value) => [value]); // 1개씩 택할 때, 바로 모든 배열의 원소 return
 
     arr.forEach((fixed, index, origin) => {
@@ -54,3 +61,4 @@ const getCombinations = function (str, selectNumber) {
 
     return results; // 결과 담긴 results return
 };
+console.log(powerSet('abcd'));
