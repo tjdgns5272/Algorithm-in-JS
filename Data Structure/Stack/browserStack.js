@@ -18,6 +18,7 @@ function browserStack(actions, start) {
                 const popPrev = prev.pop()
                 next.push(currentPage)
                 currentPage = popPrev
+
             }
         }
     }

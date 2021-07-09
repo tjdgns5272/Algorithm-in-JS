@@ -29,7 +29,7 @@ function connectedVertices(edges) {
         matrix[el[0]][el[1]] = 1;
         matrix[el[1]][el[0]] = 1;
     })
-
+    console.log(matrix);
 
     const flag = new Array(maxVertex + 1).fill(false) // 방문 여부 체크 [f,f,f,f,f]
 
@@ -57,11 +57,23 @@ function bfs(matrix, flag, from) {
         }
     }
 }
+function dfs(matrix,flag,from) {
+    result = []
+    flag[from] = true
+
+
+    for(let to = 0; to<matrix.length; to++) {
+        if (matrix[from][to] && !flag[from]) {
+            flag[from] = true
+            dfs(matrix,flag,to)
+        }
+    }
+} // 0=>1=>5=> 1 , 4=> 3
 const vertices = connectedVertices([
     [0, 1],
     [2, 3],
     [3, 4],
-    [3, 5],
+    [3, 5]
 ])
 
 console.log(vertices);
