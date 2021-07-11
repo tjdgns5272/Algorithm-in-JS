@@ -35,7 +35,7 @@ function connectedVertices(edges) {
 
     for (let from = 0; from < matrix.length; from++) {
         if (!flag[from]) {
-            bfs(matrix, flag, from)
+            dfs(matrix, flag, from)
             count++
         }
     }
@@ -58,13 +58,10 @@ function bfs(matrix, flag, from) {
     }
 }
 function dfs(matrix,flag,from) {
-    result = []
     flag[from] = true
 
-
     for(let to = 0; to<matrix.length; to++) {
-        if (matrix[from][to] && !flag[from]) {
-            flag[from] = true
+        if (matrix[from][to] && !flag[to]) {
             dfs(matrix,flag,to)
         }
     }
