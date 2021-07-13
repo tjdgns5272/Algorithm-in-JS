@@ -1,4 +1,4 @@
-const largestProductOfThree = function (arr) {
+const largestProductOfThree2 = function (arr) {
     //배열내에서 최대값을 찾는 함수
     const findMax = (arr) => {
         return arr.reduce((acc, cur) => {
@@ -20,6 +20,15 @@ const largestProductOfThree = function (arr) {
 
 };
 
+const largestProductOfThree = (arr) => {
+    arr.sort((a,b) => a-b)
+    
+    const result1 = arr[0]*arr[1]*arr[arr.length-1]
+    const result2 = arr[arr.length-1]*arr[arr.length-2]*arr[arr.length-3]
+
+    return result1>result2 ? result1 : result2
+}
+largestProductOfThree( [-5, -4, -3, -1, 999, 10000])
 // 숫자 세개중 음수가 아예 없거나 두개 일 경우에는 테스트 케이스가 통과가 되지만,
 // 음수가 1개 혹은 3개일경우에는 오답!
 // 음수 배열과 양수 배열을 따로 분리
