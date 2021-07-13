@@ -7,9 +7,8 @@ let bfs = function (node) {
         //Queue를 사용하여 트리의 노드들을 레벨별로 탐색하자.
         // 반복문을 통해 queue 안에 있는 노드들을 하나씩 탐색하고 자식이 있다면 queue에 넣어보자.
         //queue 안에 아무 것도 남지 않았다면 다 탐색한 것이기에 그때, 값을 담은 배열을 리턴하자.
-        const head = queue[0]
-        queue.shift();
-        result.push(head.value)
+        const head = queue.shift();
+        result.push(head.value);
 
         head.children.forEach(child => queue.push(child))
     }

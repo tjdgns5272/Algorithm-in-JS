@@ -75,6 +75,7 @@ const powerSet2 = function (str) {
   filteredArr.sort()
   const flag = new Array(filteredArr.length).fill(false)
   let result = []
+
   const subSetDFS = (depth) => {
     if(depth === filteredArr.length) {
       const combination = filteredArr.filter((el,idx) => flag[idx] )
