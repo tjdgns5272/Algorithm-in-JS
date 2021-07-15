@@ -23,7 +23,7 @@ const insertionSort = function (arr,cb) {
     }else {
       while (arr[index] !== undefined && arr[index - 1] > arr[index]) {
         let temp = arr[index - 1];
-        arr[index - 1] = arr[index];
+        arr[index -  1] = arr[index];
         arr[index] = temp;
         index--;
       }
