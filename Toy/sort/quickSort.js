@@ -1,14 +1,14 @@
-const quickSort = function (arr) {
+const quickSort = function (arr,cb =(item)=>item) {
     let pivot = arr[0]
     let left = []
     let right = []
     if(arr.length < 2) {
         return arr
     }
-    arr.forEach(el => {
-        if(el>pivot) {
+    arr.slice(1).forEach(el => {
+        if(cb(el)>=cb(pivot)) {
             right.push(el)
-        }else if(el < pivot) {
+        }else {
             left.push(el)
         }
     })
@@ -17,4 +17,4 @@ const quickSort = function (arr) {
     return [left,pivot,right].flat()
 };
 
-console.log(quickSort([5,3,8,4,9,1,6    ,2,7]));
+console.log(quickSort([5,3,8,5]));

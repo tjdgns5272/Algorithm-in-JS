@@ -7,7 +7,6 @@ const merge = function (left, right) { // 정렬된 왼쪽과 오른쪽 배열�
   }
 
   return [...result, ...left, ...right]; // 아래 세줄과 같은 역할을 하는 코드
-
 }
 
 const mergeSort = function (array) {
@@ -24,3 +23,4 @@ const mergeSort = function (array) {
   // 거꾸로 올라오면서 순수한 함수인 merge에 인자로 넣어서 다시 병합되어서 최종값을 리턴한다.
   return merge(mergeSort(left), mergeSort(right));
 }
+

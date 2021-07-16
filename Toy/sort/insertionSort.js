@@ -32,5 +32,7 @@ const insertionSort = function (arr,cb) {
   return arr
 };
 
+
 let output = insertionSort([8, 5, 6, 2, 4]);
 console.log(output); // --> [1, 3, 21]
+
