@@ -2,8 +2,8 @@ const rotatedArraySearch = function (rotated, target) {
 
   let midValue;
   let midIndex;
-  let left;
-  let right;
+  let left = 0;
+  let right = rotated.length - 1;
 
   // 가운데 기준점을 찾는다
   for (let i = 0; i < rotated.length - 1; i++) {
@@ -23,7 +23,8 @@ const rotatedArraySearch = function (rotated, target) {
     right = rotated.length - 1
   }
 
-  while (left < right) {  // 이진탐색
+  while (left <= right) {  // 이진탐색
+
     midIndex = Math.floor((left + right) / 2)
     if (target === rotated[midIndex]) {
       return midIndex
@@ -36,3 +37,31 @@ const rotatedArraySearch = function (rotated, target) {
   }
   return -1
 };
+
+const  rotatedArraySearch2 = (rotated, target) => {
+  let left = 0
+  let right = rotated.length - 1
+
+  while(left<=right) {
+    let mid = parseInt((left+right)/2)
+
+    if(rotated[mid] === target) return mid // mid value이 target이랑 같을때
+
+    if(rotated[left] < rotated[mid]){ // mid 기준으로 왼쪽이 오름차순으로 정렬
+      if(rotated[left]<=target && target <= rotated[mid]){  // target이 left와 mid 사이에 있을때
+        right = mid - 1
+      } else {
+        // target이 left~mid 밖에 있을때
+        // ex) [5,6,7,8,9,1,2]  left:5, right:2 mid:8, target:9일때
+        left = mid + 1
+      }
+    } else {                          // mid 기준으로 오른쪽이 오름차순으로 정렬
+      if(rotated[mid]<= target && target <= rotated[right]) { // target이 mid~right에 있을때
+        left = mid + 1
+      } else {
+        right = mid - 1
+      }
+    }
+  }
+  return -1
+}

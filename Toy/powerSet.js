@@ -62,22 +62,18 @@ const getCombinations = function (str, selectNumber) {
 };
 
 const powerSet2 = function (str) {
-  const filteredArr = []
-  const lettersArr = str.split('')
+  const strArr = str.split('').sort()
+  const set = new Set(strArr)
+  const filteredArr = [...set]
 
-
-  lettersArr.forEach((value,index) => {
-    if(!filteredArr.includes(value)) {
-      filteredArr.push(value)
-    }
-  })
-  console.log(filteredArr);
-  filteredArr.sort()
+  
   const flag = new Array(filteredArr.length).fill(false)
   let result = []
+  console.log(filteredArr);
+  console.log(flag);
 
   const subSetDFS = (depth) => {
-    if(depth === filteredArr.length) {
+    if(depth === filteredArr.length) {  // 말단에 도착했을때
       const combination = filteredArr.filter((el,idx) => flag[idx] )
       const word = combination.join('')
       result.push(word)
@@ -94,5 +90,39 @@ const powerSet2 = function (str) {
   return result
 }
 
-const output2 = powerSet2('jjumpFucker');
-console.log(output2)
+const powerSet3 = function (str) {
+  // 정렬
+  const sorted = str.split('').sort();
+
+  // 중복 제거
+  const deduplicated = sorted.reduce((acc, item) => {
+    if (acc[acc.length - 1] === item) {
+      return acc;
+    } else {
+      return acc.concat(item);
+    }
+  });
+
+  let subSets = [];
+  const pickOrNot = (idx, subset) => {
+    // base case
+    if (idx === deduplicated.length) {
+      // 마지막 문자까지 검토한 경우
+      subSets.push(subset);
+      return;
+    }
+
+    // recursive case
+    // idx번째 문자가 포함되지 않는 경우
+    pickOrNot(idx + 1, subset);
+
+    // idx번째 문자가 포함되는 경우
+    pickOrNot(idx + 1, subset + deduplicated[idx]);
+  };
+
+  pickOrNot(0, '');
+
+  return subSets.sort();
+};
+const output3 = powerSet3('abc');
+console.log(output3)
