@@ -35,24 +35,21 @@ function boardGame(board, operation) {
   return score
 }
 
-function boardGame2(board, operation) {
+function boardGame2(board, operation) { // lookup table
 
   const LEN = board.length
-  const DIR = {   // 방향을 각각 설정 -> lookup table
+  const DIR = {   // 방향을 각각 설정
     'U': [-1, 0],
     'D': [1, 0],
     'L': [0, -1],
     'R': [0, 1]
   }
-  // 인덱스값이 범위안에 드는지 확인하는 함수
   const isValid = (x, y) => 0 <= x && x < LEN && 0 <= y && y < LEN
-
   let score = 0;
   let x = 0;
   let y = 0;
-
   for (let direction of operation) {
-    const [dx, dy] = DIR[direction] // 구조분해 할당!!
+    const [dx, dy] = DIR[direction]
     x += dx
     y += dy
 
@@ -68,7 +65,7 @@ function boardGame2(board, operation) {
 }
 
 const board3 =
-  [ㅎㄴㅅ
+  [
     [0, 0, 0, 1],
     [1, 1, 1, 0],
     [1, 1, 0, 0],

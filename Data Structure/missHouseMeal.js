@@ -1,13 +1,13 @@
-function missHouseMeal(sideDishes) {
+function missHouseMeal(arr) {
 
-  sideDishes.sort()
+  arr.sort()
 
-  const flag = new Array(sideDishes.length).fill(false)
+  const flag = new Array(arr.length).fill(false)
 
   const subSets = []
   const DFS = (depth) => {
     if(depth === flag.length) { // sideDishes = [a,b,c]
-      const comb = sideDishes.filter((food,idx) => flag[idx])
+      const comb = arr.filter((food,idx) => flag[idx])
       subSets.push(comb)
       return
     }

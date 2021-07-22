@@ -1,10 +1,8 @@
 function ocean(target, type) {
 
-  let bag = [1];
+  let bag = [];
 
-  for (let i = 1; i <= target; i++)
-    bag[i] = 0;
-
+  bag = Array.from({length: target+1}, ()=>0)
   // 돈의 종류가 담겨있는 배열을 순차적으로 탐색
   type.forEach(ele => {
 
@@ -23,5 +21,5 @@ function ocean(target, type) {
   return bag[target];
 }
 
-let output = ocean(5, [2, 3, 5]);
+let output = ocean(5, [1, 2, 5]);
 console.log(output);

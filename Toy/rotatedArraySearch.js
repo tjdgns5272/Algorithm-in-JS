@@ -37,7 +37,10 @@ const rotatedArraySearch = function (rotated, target) {
   }
   return -1
 };
-
+let t0 = performance.now();
+rotatedArraySearch([6,7,9,10,13,0,2,3,5]); // 여기에서 함수 실행을 시켜주세요
+let t1 = performance.now();
+console.log("runtime: " + (t1 - t0) + 'ms')
 const  rotatedArraySearch2 = (rotated, target) => {
   let left = 0
   let right = rotated.length - 1
