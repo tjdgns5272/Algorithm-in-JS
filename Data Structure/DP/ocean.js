@@ -1,11 +1,11 @@
 function ocean(target, type) {
 
   let bag = [];
-
-  bag = Array.from({length: target+1}, ()=>0)
+  //DP => 한번 계산한 거는 또 안하고 그걸 이용해서 효율을 높힌다
+  bag = Array.from({length: target+1}, () => 0)
   // 돈의 종류가 담겨있는 배열을 순차적으로 탐색
   type.forEach(ele => {
-
+    console.log(bag);
     bag[ele] += 1 // 자기 자신으로 만들수 있는경우의수
     for (let i = ele + 1; i <= target; i++) {
       // bag의 인덱스가 type 보다 큰 구간만
@@ -21,5 +21,5 @@ function ocean(target, type) {
   return bag[target];
 }
 
-let output = ocean(5, [1, 2, 5]);
+let output = ocean(5, [2,3, 5]);
 console.log(output);

@@ -105,6 +105,7 @@ const powerSet3 = function (str) {
 
   let subSets = [];
   const pickOrNot = (idx, subset) => {
+
     // base case
     if (idx === deduplicated.length) {
       // 마지막 문자까지 검토한 경우
