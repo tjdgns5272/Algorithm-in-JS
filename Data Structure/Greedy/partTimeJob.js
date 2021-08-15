@@ -16,3 +16,33 @@ function partTimeJob(k) {
   }
   return count
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const partTimeJob2 = (k) => {
+  const coins = [500,100,50,10,5,1]
+  let answer = 0
+  while (k > 0) {
+    const curCoin = coins.shift()
+    answer += parseInt(k/curCoin)
+    k %= curCoin
+  }
+  return answer
+}
+
+const output2 = partTimeJob2(4972);
+console.log(output2); // --> 18

@@ -59,4 +59,19 @@ function missHouseMeal2(sideDishes) {
   // 정렬 후 리턴
   return result.sort();
 }
-console.log(missHouseMeal2(['a','b','c']));
+function missHouseMeal3(sideDishes) {
+  sideDishes.sort()
+  const subSets  = []
+
+  const pickOrNot = (idx,subset) => {
+    if(idx === sideDishes.length) {
+      subSets.push(subset);
+      return
+    }
+    pickOrNot(idx+1, subset)
+    pickOrNot(idx+1, subset.concat(sideDishes[idx]))
+  };
+  pickOrNot(0,[])
+  return subSets.sort();
+}
+console.log(missHouseMeal3(['a','b','c']));

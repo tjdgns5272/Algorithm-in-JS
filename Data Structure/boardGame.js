@@ -54,7 +54,7 @@ function boardGame2(board, operation) { // lookup table
     y += dy
 
     if (isValid(x, y)) {
-      if(board[x][y]){
+      if (board[x][y]) {
         score++
       }
     } else {
@@ -64,6 +64,35 @@ function boardGame2(board, operation) { // lookup table
   return score
 }
 
+
+function boardGame3(board, operation) { // lookup table
+  const DIR = {
+    'U': [-1, 0],
+    'D': [1, 0],
+    'R': [0, 1],
+    'L': [0, -1]
+  }
+  const rowLen = board.length
+  const colLen = board[0].length
+  const isValid = (row,col) => (0 <= row && row < rowLen) && (0 <= col && col < colLen)
+  let count = 0
+  let [curY, curX] = [0, 0]
+  const opt = operation.split('')
+  while (opt.length > 0) {
+    const curOpt = opt.shift()
+    const [dy, dx] = DIR[curOpt]
+    curY += dy
+    curX += dx
+    if(!isValid(curY,curX)) return 'OUT'
+
+    if(board[curY][curX]) {
+      count++
+    }
+  }
+  return count
+}
+
+
 const board3 =
   [
     [0, 0, 0, 1],
@@ -71,4 +100,4 @@ const board3 =
     [1, 1, 0, 0],
     [0, 0, 0, 0],
   ];
-console.log(boardGame2(board3, 'RRDLLD'))
+console.log(boardGame3(board3, 'RRDLLD'))
