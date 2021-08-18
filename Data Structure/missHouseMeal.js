@@ -64,6 +64,7 @@ function missHouseMeal3(sideDishes) {
   const subSets  = []
 
   const pickOrNot = (idx,subset) => {
+    console.log('실행!');
     if(idx === sideDishes.length) {
       subSets.push(subset);
       return
@@ -71,6 +72,13 @@ function missHouseMeal3(sideDishes) {
     pickOrNot(idx+1, subset)
     pickOrNot(idx+1, subset.concat(sideDishes[idx]))
   };
+  /*const pickOrNot = (idx,arr) => {
+    console.log('실행!!!');
+    subSets.push(arr)
+    for(let i=idx; i<sideDishes.length ; i++) {
+      pickOrNot(i+1, arr.concat(sideDishes[i]))
+    }
+  }*/
   pickOrNot(0,[])
   return subSets.sort();
 }
